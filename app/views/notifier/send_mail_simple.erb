@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+    <body>
+
+
+  
+<% var2="http://billetgratuit.herokuapp.com/images/logo.png"  %>
+
+<% var3="http://billetgratuit.herokuapp.com/assets/facebook-7b54e617b9f47c1dbad9e62f599fa5cd.png"  %>
+
+<% var4="http://billetgratuit.herokuapp.com/assets/twitter-f539c88b26a6b5454bdb9b089cf9c7d9.png"  %>
+
+
+
+	                        <div style="background:background: none repeat scroll 0% 0% rgb(248, 248, 248);" >
+
+                               
+                                	
+                                    <a href="http://billetgratuit.com">
+                                   <img src="<%= var2 %>" alt="arobas" style="width:40%;" />
+                                    </a>
+                                  
+                                
+                                  
+                                         
+                              </div>
+
+
+
+                              <div class="row " >
+
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center " >
+
+
+
+<div> 
+
+
+
+
+  <h2><%= @mailgeneral.body %></h2>
+  <h2>Bonne journée</h2>
+
+
+
+
+   </div>
+
+</div>  
+
+<!-- -------------------------------------------------------------  -->
+   <div style="align:center;margin-top:50px;">
+    
+ <a href="http://billetgratuit.herokuapp.com/authors/<%= @authorx.id %>/edit?token=<%= @authorx.token %>">
+                       <font size="4">Ne plus recevoir les invitations par email</font>
+                                    </a>
+                                   
+  </div>                                  
+
+<!--  ----------------------------------------------------------------- -->
+
+ 
+
+
+    <br><br><br><br>                           
+                         
+                              
+
+
+	
+
+    
+
+  <div style="align:center;">
+     <p>
+                                   <a href="https://www.facebook.com/pages/Billetgratuit/1467994370090036?fref=ts">
+                                   <img src="<%= var3 %>" alt="arobas" height="50" />
+                                    </a>
+                                     <a href="https://twitter.com/Billetsgratuit">
+                                   <img src="<%= var4 %>" alt="arobas" height="50" />
+                                    </a>
+                          
+      </p> 
+
+       <p  class="couleurgrise fondgris" style="font-size:15px;"> Copyright &copy; Billetgratuit.com 2014 </p>
+         
+         
+         
+    </div>
+
+
+
+
+
+
+
+            <!-- ------------------------------------------------------------- -->
+
+
+   </body>
+</html>
+

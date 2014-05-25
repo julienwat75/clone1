@@ -1,0 +1,228 @@
+
+<% provide(:title, "Mon compte") %>
+
+
+
+
+<div class="row" >
+
+  <div   class="col-xs-0 col-md-4 col-lg-4 " > </div>
+
+
+<!--  -----------------------------  Pour PC  --------------------------------------------------- -->
+
+
+  <div   class="col-xs-12 col-md-4 col-lg-4  hidden-xs" >
+
+
+
+
+
+<!--
+        <p>
+        <% var=@author.avatar.url %>
+        <% var[0,23] = "https://s3-eu-west-1.amazonaws.com" %>
+
+        </p>
+
+        <img src="<%= var %>" alt="arobas" style="width:164px; height:164px;" />
+
+         <p>
+
+
+ -->   
+
+
+
+ 
+
+        <div class="monecriture">
+          <strong>Civilité:</strong>
+          <%= @author.sexe %>
+        </div>
+
+
+       <div class="monecriture">
+          <strong>Pseudo:</strong>
+          <%= @author.email %>
+        </div>
+
+        <div class="monecriture">
+          <strong>Email:</strong>
+          <%= @author.username %>
+        </div>
+
+        <div class="monecriture">
+          <strong>Nom:</strong>
+          <%= @author.nom %>
+        </div>
+
+         <div class="monecriture">
+          <strong>Prenom:</strong>
+          <%= @author.prenom %>
+        </div>
+
+         <div class="monecriture">
+          <strong>Année de naissance:</strong>
+          <%= @author.date_naissance %>
+        </div>
+
+       <div class="monecriture">
+          <strong>Ville:</strong>
+          <%= @author.ville %>
+        </div>
+        <br>
+
+        <div class="monecriture">
+          <strong>Être prévenu des nouvelles invitations par email:</strong>
+          <% if current_user.alerte %>
+          <font color="red">Oui</font>
+          <% else %>
+          <font color="red">Non</font> 
+          <% end %>
+ 
+        </div>
+
+         <br>
+
+        
+        <div class="monecriture">
+
+        <%= link_to 'Modifier le compte', edit_author_path(@author) %> 
+
+        </div>
+        
+
+
+        <div class="monecriture">
+
+         <%= link_to 'Supprimer mon compte', @author, method: :delete, data: { confirm: 'Etes vous sur de vouloir supprimer votre compte?' } %>
+        </div>
+
+
+      </div>
+
+      <!--  ------------------------------------------------------------------------------------------------------------  -->
+
+      <!--  -----------------------------  Pour Mobile  --------------------------------------------------- -->
+
+
+  <div   class="col-xs-12 col-md-4 col-lg-4  hidden-md hidden-lg"   >
+
+
+
+
+
+<!--
+        <p>
+        <% var=@author.avatar.url %>
+        <% var[0,23] = "https://s3-eu-west-1.amazonaws.com" %>
+
+        </p>
+
+        <img src="<%= var %>" alt="arobas" style="width:164px; height:164px;" />
+
+         <p>
+
+
+ -->    
+         <div class="invitation" style="border-radius:5px 5px 5px 5px;padding:15px;">     
+        <div class="monecriture">
+          <strong>Civilité:</strong>
+          <%= @author.sexe %>
+        </div>
+
+
+        <div class="monecriture">
+          <strong>Pseudo:</strong>
+          <%= @author.email %>
+        </div>
+
+        <div class="monecriture">
+          <strong>Email:</strong>
+          <%= @author.username %>
+        </div>
+
+        <div class="monecriture">
+          <strong>Nom:</strong>
+          <%= @author.nom %>
+        </div>
+
+         
+         <div class="monecriture">
+          <strong>Prenom:</strong>
+          <%= @author.prenom %>
+        </div>
+
+         <div class="monecriture">
+          <strong>Année de naissance:</strong>
+          <%= @author.date_naissance %>
+        </div>
+
+       <div class="monecriture">
+          <strong>Ville:</strong>
+          <%= @author.ville %>
+        </div>
+        <br>
+
+        <div class="monecriture">
+          <strong>Être prévenu des nouvelles invitations par email:</strong>
+          <% if current_user.alerte %>
+          <font color="red">Oui</font>
+          <% else %>
+          <font color="red">Non</font> 
+          <% end %>
+ 
+        </div>
+
+         <br>
+
+        
+        <div class="monecriture">
+
+        <%= link_to 'Modifier le compte', edit_author_path(@author) %> 
+
+        </div>
+        
+
+        <div class="monecriture">
+
+         <%= link_to 'Supprimer mon compte', @author, method: :delete, data: { confirm: 'Etes vous sur de vouloir supprimer votre compte?' } %>
+        </div>
+
+      </div>
+
+
+      </div>
+
+      <!--  ------------------------------------------------------------------------------------------------------------  -->
+
+      
+
+
+        
+
+
+       <div   class="col-xs-0 col-md-4 col-lg-4 " > </div>
+
+
+
+</div>  <!--  fin du row  
+
+
+
+
+
+
+
+
+
+       <!--    <h3>Comments</h3>
+        <%= render partial: 'authors/authors/commentaire', collection: @authors.commentaires %>
+
+        <%= render partial: 'authors/commentaire/form' %>
+
+        -->
+
+
+        

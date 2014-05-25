@@ -1,0 +1,99 @@
+<% provide(:title, "Membres") %>
+
+<div class="row" >
+
+  <div   class="col-xs-0 col-md-3 col-lg-3 " > </div>
+
+
+<!--  -----------------------------  Pour PC  --------------------------------------------------- -->
+
+
+  <div   class="col-xs-12 col-md-6 col-lg-6  hidden-xs" >
+
+    <% if current_user.id == 3 %>
+      
+      <div class="monecriture" style="font-size:22px;">
+
+       Total Membres:<%= @authors.length %> <!--  on compte les membres -->
+
+       </div> 
+
+
+    <% end %> 
+
+
+   
+  
+    <% @authors.each do |author| %>
+
+      <p>    
+      
+       
+        <%= author.email %>
+       
+        <%= link_to 'Show', author %>
+        
+      </p>
+     
+    <% end %>
+  
+
+<br>
+
+<%= link_to 'New Author', new_author_path %>
+</div>
+
+<!--  ----------------------------- --------------------------------------------------- -->
+
+<!--  -----------------------------  Pour Mobile  --------------------------------------------------- -->
+
+
+  <div   class="col-xs-12 col-md-6 col-lg-6  hidden-md hidden-lg" >
+
+    <div class="invitation" style="border-radius:5px 5px 5px 5px;padding:15px;"> 
+
+
+       <% if current_user.id == 3 %>
+      
+      <div class="monecriture" style="font-size:22px;">
+
+       Total Membres:<%= @authors.length %>
+
+       </div> 
+
+
+    <% end %> 
+
+  
+    <% @authors.each do |author| %>
+
+      <p>    
+      
+        
+        <%= author.email %>
+       
+        <%= link_to 'détails', author %>
+        
+      </p>
+     
+    <% end %>
+  
+
+<br>
+
+<%= link_to 'New Author', new_author_path %>
+
+</div>
+
+</div>
+
+<!--  ----------------------------- --------------------------------------------------- -->
+
+
+
+
+
+
+ <div   class="col-xs-0 col-md-3 col-lg-3 " > </div>
+
+</div>

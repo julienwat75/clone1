@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+
+    <% @datelimite=@reservations.datelimite %>
+    
+
+   <% jour=@reservations.dateinvitation.strftime("%A") %>  
+
+   <% mois=@reservations.dateinvitation.strftime("%B")  %>
+
+
+   <% jour2=@datelimite.strftime("%A") %>  
+
+   <% mois2=@datelimite.strftime("%B")  %>
+
+
+<% case jour  %>
+ <% when "Monday"  %>
+ <%  jour= "Lundi" %> 
+ <% when "Tuesday"  %>
+ <%  jour= "Mardi" %> 
+<% when "Wednesday"  %>
+ <%  jour= "Mercredi" %>
+  <% when "Thursday"  %>
+ <%  jour= "Jeudi" %>
+  <% when "Friday"  %>
+ <%  jour= "Vendredi" %>
+  <% when "Saturday"  %>
+ <%  jour= "Samedi" %> 
+  <% when "Sunday"  %>
+ <%  jour= "Dimanche" %> 
+<% else  %>              
+ <% puts 'Only single-digit numbers are allowed' %>
+ <% end %>
+
+ <% case mois  %>
+ <% when "January"  %>
+ <%  mois= "Janvier" %> 
+ <% when "February"  %>
+ <%  mois= "Février" %> 
+<% when "March"  %>
+ <%  mois= "Mars" %>
+  <% when "April"  %>
+ <%  mois= "Avril" %>
+  <% when "May"  %>
+ <%  mois= "Mai" %>
+  <% when "June"  %>
+ <%  mois= "Juin" %>
+  <% when "July"  %>
+ <%  mois= "Juillet" %>
+  <% when "August"  %>
+ <%  mois= "Aout" %>
+  <% when "September"  %>
+ <%  mois= "Septembre" %>
+  <% when "October"  %>
+ <%  mois= "Octobre" %>
+   <% when "November"  %>
+ <%  mois= "Novembre" %>
+  <% when "December"  %>
+ <%  mois= "Décembre" %>
+<% else  %>              
+ 
+ <% end %>
+
+
+ <% case jour2  %>
+ <% when "Monday"  %>
+ <%  jour2= "Lundi" %> 
+ <% when "Tuesday"  %>
+ <%  jour2= "Mardi" %> 
+<% when "Wednesday"  %>
+ <%  jour2= "Mercredi" %>
+  <% when "Thursday"  %>
+ <%  jour2= "Jeudi" %>
+  <% when "Friday"  %>
+ <%  jour2= "Vendredi" %>
+  <% when "Saturday"  %>
+ <%  jour2= "Samedi" %> 
+  <% when "Sunday"  %>
+ <%  jour2= "Dimanche" %> 
+<% else  %>              
+ <% puts 'Only single-digit numbers are allowed' %>
+ <% end %>
+
+ <% case mois2  %>
+ <% when "January"  %>
+ <%  mois2= "Janvier" %> 
+ <% when "February"  %>
+ <%  mois= "Février" %> 
+<% when "March"  %>
+ <%  mois2= "Mars" %>
+  <% when "April"  %>
+ <%  mois2= "Avril" %>
+  <% when "May"  %>
+ <%  mois2= "Mai" %>
+  <% when "June"  %>
+ <%  mois2= "Juin" %>
+  <% when "July"  %>
+ <%  mois2= "Juillet" %>
+  <% when "August"  %>
+ <%  mois2= "Aout" %>
+  <% when "September"  %>
+ <%  mois2= "Septembre" %>
+  <% when "October"  %>
+ <%  mois2= "Octobre" %>
+   <% when "November"  %>
+ <%  mois2= "Novembre" %>
+  <% when "December"  %>
+ <%  mois2= "Décembre" %>
+<% else  %>              
+ 
+ <% end %>
+
+
+
+ <% var2="http://billetgratuit.herokuapp.com/images/logo.png"  %>
+ <% @price=@multi.price.to_f/100 %>
+ <% @prix_normal=@multi.prix_normal.to_f/100 %>
+ <% nb_preferentiel= @reservations.nombreinvitations.to_i %>
+ <% @prix_total_normal= @prix_normal.to_f*nb_preferentiel.to_i  %>
+ <% @prix_total= @price.to_f*nb_preferentiel.to_i  %>
+
+
+
+
+
+                          <div style="background:background: none repeat scroll 0% 0% rgb(248, 248, 248);" >
+
+                               
+                                  <div align="left">
+                                    <a href="http://billetgratuit.com">
+                                   <img src="<%= var2 %>" alt="arobas" style="width:40%;" />
+                                    </a>
+                                    </div>
+                                
+                                  
+                                         
+                              </div>
+
+
+<% if @reservations.genre == "spectacle" %>
+
+
+
+    <h1>Coupon Billetgratuit</h1>
+    <h2> <%= @reservations.sexe %> <%= @reservations.author_nom %>!</h2> <br>
+
+    <h1>Bonjour <%= @reservations.sexe %> <%= @reservations.author_nom %>!</h1> <br>
+    <p>Voici votre coupon pour "<%= @reservations.titre %>"</p>
+    <p>Vous devez vous présenter avec votre carte d'identité
+       et ce coupon. 
+    </p>
+
+
+
+<h4> Nombre de réservations: <%= @reservations.nombreinvitations %> </h4>
+<h3> Prix total: <%= @prix_total %>€ au lieu de  <%= @prix_total_normal %>€ </h3>
+<h3>  (Paiment à la caisse muni de ce coupon) </h3>
+<br>
+
+
+
+<p> Code de réservation: <%= @reservations.code %> </p>
+<p> 
+Date du spéctacle:
+ <%= jour %> 
+ <%= @reservations.dateinvitation.day %> 
+ <%= mois %>  à <%= @reservations.dateinvitation.hour  %> H 
+ <%= @reservations.dateinvitation.min  %>
+</p>
+
+
+<p> Adresse:<%= @reservations.adresse %></p>
+
+
+ <p> <%= @reservations.vraiadresse %></p>
+
+ <br><br>
+
+ <h3> Vous devez confirmer votre réservation avec votre nom à l'adresse billetgratuitparis@gmail.com sous 24h</h3>
+ <p> (Sans confirmation, votre réservation ne sera pas prise en compte) <p>
+
+
+
+<br>
+<<<<<<< HEAD
+Bon spéctacle
+=======
+Bon spéctacle.
+>>>>>>> 5263e56574dee86d3c5206ee087698e407b44a33
+<br>
+<p>A très bientot sur http://www.billetgratuit.com </p>
+<br>
+
+<% else %>
+ <h1>Coupon Billetgratuit</h1>
+<h1>Bonjour <%= @reservations.sexe %> <%= @reservations.author_nom %>!</h1> <br>
+    <p>Voici votre coupon pour "<%= @reservations.titre %>"</p>
+    <p>Vous devez vous présenter avec votre carte d'identité
+       et ce coupon. 
+    </p>
+
+<br>
+<h3> Bon à tarif préférentiel pour: "<%= @reservations.titre %>" </h3>
+<h3> Prix unitaire: <%= @price %>€ au lieu de <%= @prix_normal %>€ </h3> 
+<p> Code de réservation: <%= @reservations.code %> </p>
+<p> Nombre de réservations: <%= @reservations.nombreinvitations %> </p>
+<p> 
+Valable du:
+ <%= jour %> 
+ <%= @reservations.dateinvitation.day %> 
+ <%= mois %> à  
+ <%= @reservations.dateinvitation.hour %> H  <%= @reservations.dateinvitation.min %>
+
+
+ au
+
+ <%= jour2 %> 
+ <%= @datelimite.day %> 
+ <%= mois2 %> à
+ <%= @datelimite.hour %> H  <%= @datelimite.min %>
+
+
+
+</p>
+
+
+<p> Adresse:<%= @reservations.adresse %></p>
+
+
+ <p> <%= @reservations.vraiadresse %></p>
+
+
+
+<br><br>
+
+<h3> Vous devez confirmer votre réservation avec votre nom à l'adresse billetgratuitparis@gmail.com sous 24h</h3>
+ <p> (Sans confirmation, votre réservation ne sera pas prise en compte) </p>
+
+ <br>
+
+
+
+
+<p>A très bientot sur http://www.billetgratuit.com </p>
+<br>
+
+
+
+<% end %>
+
+    
+
+  </body>
+</html>
+

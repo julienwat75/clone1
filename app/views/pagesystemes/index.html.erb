@@ -1,0 +1,30 @@
+<% provide(:title, "Systeme") %>
+
+<div class="row " >
+
+    <div class="col-xs-0 col-sm-4 col-md-4 col-lg-4 text-center " ></div>
+
+
+     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 text-center " >
+
+
+
+		<% if @pagesysteme.ouverture_invitation %>
+
+		<h3>Invitations ouvertes </h3>
+		<% else %>
+
+		<h3>Invitations fermés </h3>
+
+		<% end %>
+
+
+
+		<%= link_to 'Editer', edit_pagesysteme_path(1) %>
+
+
+		</div>
+
+    <div class="col-xs-0 col-sm-4 col-md-4 col-lg-4 text-center " ></div>
+
+</div>    

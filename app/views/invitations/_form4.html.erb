@@ -1,0 +1,30 @@
+ <div class="description" >
+                                    
+                          <div style="font-size:20px">   Invitation Privée:(Entrer votre code partenaire)</div>
+                                        
+                                          
+
+                          <%= form_for [ @pagesysteme ] do |f| %> 
+
+                          <div style="margin-bottom:20px;font-size:20px;">
+                          <!-- <%= @invitation.titre %> -->
+                          </div>
+                          
+                         <div style="margin-bottom:20px;font-size:20px;">
+                           
+                           Code:
+                           <input type="text" name="code">
+
+                           <input  type="hidden" value="<%=   @invitation.id  %>" name="invitation_id">
+
+                           <input  type="hidden" value="<%=   @mon_code  %>" name="vrai_code">
+
+
+                          </div>
+
+                        </div> 
+
+                          <div style="font-size:22px;color:blue;">
+                            <%= f.submit "Réserver", :class => 'btn btn-default btn-lg',:style =>'width:100%;margin-top: 15px;' %>
+                          </div>
+                        <% end %>

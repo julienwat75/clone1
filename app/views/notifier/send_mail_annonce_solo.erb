@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+    <body>
+
+
+  
+<% var2="http://billetgratuit.herokuapp.com/images/logo.png"  %>
+
+<% var3="http://billetgratuit.herokuapp.com/assets/facebook-7b54e617b9f47c1dbad9e62f599fa5cd.png"  %>
+
+<% var4="http://billetgratuit.herokuapp.com/assets/twitter-f539c88b26a6b5454bdb9b089cf9c7d9.png"  %>
+
+
+<div class="container" style="width:500px;padding-right: 15px;padding-left: 15px;margin-right: auto;margin-left: auto;"   >
+
+
+	                        <div style="background:background: none repeat scroll 0% 0% rgb(248, 248, 248);" >
+
+                               
+                                	<div align="center">
+                                    <a href="http://billetgratuit.com">
+                                   <img src="<%= var2 %>" alt="arobas" style="width:90%;" />
+                                    </a>
+                                    </div>
+                                
+                                  
+                                         
+                              </div>
+
+
+                              
+                               <div style="font-family: Arial,Verdana;text-decoration: none;color: rgb(79, 71, 71);margin-top:20px;text-align:left;margin-bottom:30px;padding-top:100px:padding-bottom:100px;" >
+
+                               
+                                <font size="6">  Invitations de dernière minute ! </font>
+                                  
+                                         
+                              </div>
+                             <br>
+                               
+
+
+
+                                
+
+
+
+<h2><%= @mailgeneral.body %></h2>   <br><br>
+                               
+                         
+    <% id1= @grades[0] %>
+    <% id2= @grades[1] %>
+    <% id3= @grades[2] %>
+
+
+     
+
+                             
+
+  
+    
+        <div class="box"  style="background:background: none repeat scroll 0% 0% rgb(248, 248, 248);width:400px;margin-right:auto;margin-left:auto;" >
+
+
+             <div class="row "  >
+
+                
+        <% @invitations.each do |t| %>
+
+          
+            <% if (t.id == id1.to_i || t.id == id2.to_i || t.id == id3.to_i) &&  Invitation.late(t.multidates.order(:datex).last.datex) %>
+
+           
+           
+
+        <!--  switch et variable --> 
+
+  <% jour=t.multidates.order(:datex).last.datex.strftime("%A") %>  
+
+  <% mois=t.multidates.order(:datex).last.datex.strftime("%B")  %>
+
+<% case jour  %>
+ <% when "Monday"  %>
+ <%  jour= "Lundi" %> 
+ <% when "Tuesday"  %>
+ <%  jour= "Mardi" %> 
+<% when "Wednesday"  %>
+ <%  jour= "Mercredi" %>
+  <% when "Thursday"  %>
+ <%  jour= "Jeudi" %>
+  <% when "Friday"  %>
+ <%  jour= "Vendredi" %>
+  <% when "Saturday"  %>
+ <%  jour= "Samedi" %> 
+  <% when "Sunday"  %>
+ <%  jour= "Dimanche" %> 
+<% else  %>              
+ <% puts 'Only single-digit numbers are allowed' %>
+ <% end %>
+
+ <% case mois  %>
+ <% when "January"  %>
+ <%  mois= "Janvier" %> 
+ <% when "February"  %>
+ <%  mois= "Février" %> 
+<% when "March"  %>
+ <%  mois= "Mars" %>
+  <% when "April"  %>
+ <%  mois= "Avril" %>
+  <% when "May"  %>
+ <%  mois= "Mai" %>
+  <% when "June"  %>
+ <%  mois= "Juin" %>
+  <% when "July"  %>
+ <%  mois= "Juillet" %>
+  <% when "August"  %>
+ <%  mois= "Aout" %>
+  <% when "September"  %>
+ <%  mois= "Septembre" %>
+  <% when "October"  %>
+ <%  mois= "Octobre" %>
+   <% when "November"  %>
+ <%  mois= "Novembre" %>
+  <% when "December"  %>
+ <%  mois= "Décembre" %>
+<% else  %>              
+ 
+ <% end %>
+
+
+<% var=t.avatar.url %>
+
+<% var[0,23] = "https://s3-eu-west-1.amazonaws.com" %>
+
+<% resume=t.description %>
+<% resume=resume[0...200]%>
+
+
+
+ 
+
+   
+
+
+        <!--  fin switch et variable -->
+
+          
+
+      
+             <!--  -------------------------------- Invitations ---------------------------- --> 
+               <div  class="col-xs-12 col-sm-12 col-md-6 col-lg-4 fondgris" style="text-align:left;height:600px;overflow:hidden;margin-bottom:10px;margin-top:20px;border:1px solid #e1e1e1;background:background: none repeat scroll 0% 0% rgb(248, 248, 248);"    >  <!-- debut premier div ---- -->
+                  <div align="center">
+                <!--  Version PC ------------------------------------------------------------------ -->
+                
+                    <div style="padding:20px;"> 
+                     <a href="http://billetgratuit.herokuapp.com/invitations/<%= t.id %>?token=<%= @authorx.token %>" style="text-decoration:none;">  
+                                   <div  style="font-family: Helvetica Neue,Arial,sans-serif;color: rgb(104, 104, 104);text-align:left;font-size:24px;"> 
+                                   
+                                    <%=  t.titre %> 
+
+                                                
+                                    </div>
+                                    </a>
+                                    <div style="text-align:left;font-size:20px;">
+                                                Actuellement 
+                                      </div>  
+                                      <div style="text-align:left;font-size:20px;">
+                                               
+                                                <%= t.adresse  %>
+                                      </div>     
+                                        
+                                     
+
+
+
+                         </div>
+
+
+                          
+                             <div class="vignette" >
+
+                                <div >
+                                    <a href="http://billetgratuit.herokuapp.com/invitations/<%= t.id %>?token=<%= @authorx.token %>">
+                                   <img src="<%= var %>" alt="arobas" style="width:100%;text-align:left;float:left;margin-right:10px;" />
+                                    </a>
+                                 </div>
+                                  
+                                         
+                              </div>
+                         
+                              
+
+
+                      
+
+                    </div>  
+                     
+                              
+              </div>
+                  <!-- Fin Version PC -------------------------------------------------  -->
+
+               
+
+
+           <% else %>
+   
+          
+
+           <% end %>  <!--  Fin du if  -->
+
+
+      <% end %>
+
+ </div>
+
+ <br><br>
+
+ <!-- -------------------------------------------------------------  -->
+   <div style="align:center;margin-top:50px;">
+    
+ <a href="http://billetgratuit.herokuapp.com/authors/<%= @authorx.id %>/edit?token=<%= @authorx.token %>">
+                       <font size="4">Ne plus recevoir les invitations par email</font>
+                                    </a>
+                                   
+  </div>                                  
+
+<!--  ----------------------------------------------------------------- -->
+
+<br><br>
+
+
+
+
+  <div style="align:center;margin-top:50px;">
+     <p>
+                                   <a href="https://www.facebook.com/pages/Billetgratuit/1467994370090036?fref=ts">
+                                   <img src="<%= var3 %>" alt="arobas" height="50" />
+                                    </a>
+                                     <a href="https://twitter.com/Billetsgratuit">
+                                   <img src="<%= var4 %>" alt="arobas" height="50" />
+                                    </a>
+                          
+      </p> 
+
+       <p  class="couleurgrise fondgris" style="font-size:15px;"> Copyright &copy; Billetgratuit.com 2014 </p>
+         
+         
+         
+    </div>
+
+
+
+
+</div>    <!-- fin div row -->
+
+
+</div>  <!-- fin div container  -->
+
+
+
+
+            <!-- ------------------------------------------------------------- -->
+
+
+   </body>
+</html>
+

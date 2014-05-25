@@ -1,0 +1,20 @@
+development:
+  access_key_id: AKIAI4EBUTFB3EZZ4HAA
+
+  secret_access_key: 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
+
+  bucket: julienwat75
+
+
+
+  test:
+  access_key_id: AKIAI4EBUTFB3EZZ4HAA
+  secret_access_key: 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
+  bucket: julienwat75
+
+  production:
+  access_key_id: AKIAI4EBUTFB3EZZ4HAA
+  secret_access_key: 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
+  bucket: julienwat75
+
+  

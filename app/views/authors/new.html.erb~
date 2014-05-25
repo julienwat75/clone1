@@ -1,0 +1,74 @@
+<% provide(:title, "Créer un compte") %>
+
+
+<div class="field" style="margin-bottom:20px;font-size:20px;">
+<%= link_to 'Déjà un compte?', login_path %>
+</div>
+
+<% if @faux  %>
+
+<div class="field">
+
+ Erreur de saisies 
+
+  <% @authors.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+
+ </div>
+
+  <% end %>
+
+
+
+
+<%= form_for(@author) do |f| %>
+  <% if @author.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@author.errors.count, "error") %> prohibited this author from being saved:</h2>
+
+      <ul>
+      <% @author.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  
+  <div class="field">
+    <%= f.label :Nom   %><br>
+     <%= f.text_field :email  %> 
+    
+  </div>
+  
+  <div class="field">
+    <%= f.label :Email %><br>
+    <%= f.text_field :username %>
+  </div>
+ 
+  <div class="field">
+   
+  </div>
+<div class="field">
+    <%= f.label :Photo %>
+    <%= f.file_field :avatar %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :password %><br>
+    <%= f.password_field :password %>
+  </div>
+  <div class="field">
+    <%= f.label :password_confirmation %><br>
+    <%= f.password_field :password_confirmation %>
+  </div>
+  <div class="actions" style="margin-top:20px;font-size:20px;">
+    <%= f.submit "valider" %>
+  </div>
+<% end %>
+
+
+
+
+

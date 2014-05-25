@@ -1,0 +1,43 @@
+<% provide(:title, "Partenaires") %>
+
+
+<div class="row" >
+
+  <div   class="col-xs-0 col-md-4 col-lg-4 " > </div>
+
+
+<!--  -----------------------------  Pour Mobile  --------------------------------------------------- -->
+
+
+  <div   class="col-lg-12 col-lg-4 " >
+
+
+  <% @partenaires.each do |t| %>
+
+      <p>    
+      
+       
+        <%= t.nom %>
+       
+        <%= link_to 'Show', t %>
+        
+      </p>
+     
+    <% end %>
+  
+
+<br>
+
+<%= link_to 'New partenaire', new_partenaire_path %>
+
+  </div>
+
+
+  <div   class="col-xs-0 col-md-4 col-lg-4 " > </div>
+
+
+</div>
+
+  
+
+

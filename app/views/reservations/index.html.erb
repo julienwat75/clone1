@@ -1,0 +1,117 @@
+<% provide(:title, "Réservation") %>
+
+
+
+
+<div class="row" style="background:#e5e5e5;text-align:left;">
+  
+   <div   class="col-xs-3"  >Fiabilité </div>
+   <div   class="col-xs-3" > Nom </div>
+   <div   class="col-xs-3" > Code  </div>
+   <div   class="col-xs-3" >  </div>
+   
+   
+   
+
+</div>
+
+
+ <% limite_blackliste = 2 %>
+
+<% @reservations.each do |t| %>
+
+
+		<% if Invitation.late2(t.dateinvitation)  %>
+
+		<div class="row" style="text-align:left;overflow:hidden;background:#e5e5e5">
+		  
+		  
+		   <div   class="col-xs-3" style="border-top: solid 1px grey;" > 
+
+		   	<% membre=Author.find_by_id(t.author_id) %>
+
+		   	
+		   	
+            <% if membre.point_positif < 2 &&  membre.point_negatif < limite_blackliste  %>
+		   	
+		   		<font color="black"><%= fiabilite="Inconnu" %></font>
+
+		   	<% end %>
+
+		   	 <% if membre.point_positif >= 2 &&  membre.point_negatif < limite_blackliste  %>
+		   	
+		   	 	<font color="blue"><%= fiabilite="Fiable" %></font>
+
+		   	<% end %>
+
+		   	<% if membre.point_negatif >= limite_blackliste  %>
+		   	
+		   	<font color="red"><%= fiabilite="Blacklisté" %></font>
+
+		   	<% end %>
+
+		    
+
+
+		   	 </div>
+		   <div   class="col-xs-3"  style="border-top: solid 1px grey;"> <%= link_to t.author_nom, author_path(t.author_id), {:style=>'color:black;'}  %>  </div>
+		   <div   class="col-xs-3" style="border-top: solid 1px grey;overflow:hidden;"> <%= t.code %> </div>
+		   <div  class="col-xs-3" style="border-top: solid 1px grey;" >  <%= link_to "Détails", detailresa_path(t.id) %></div>
+			
+
+		</div>
+
+		<% else %>
+
+
+		<div class="row" style="text-align:left;overflow:hidden;background:white">
+		  
+		  
+		   <div   class="col-xs-3" style="border-top: solid 1px grey;" > 
+
+           	<% membre=Author.find_by_id(t.author_id) %>
+
+		   	
+		   	
+            <% if membre.point_positif < 2 &&  membre.point_negatif < limite_blackliste  %>
+		   	
+		   		<font color="black"><%= fiabilite="Inconnu" %></font>
+
+		   	<% end %>
+
+		   	 <% if membre.point_positif >= 2 &&  membre.point_negatif < limite_blackliste  %>
+		   	
+		   	 	<font color="blue"><%= fiabilite="Fiable" %></font>
+
+		   	<% end %>
+
+		   	<% if membre.point_negatif >= limite_blackliste  %>
+		   	
+		   	<font color="red"><%= fiabilite="Blacklisté" %></font>
+
+		   	<% end %>
+
+
+
+		   </div>
+		   <div   class="col-xs-3"  style="border-top: solid 1px grey;"> <%= link_to t.author_nom, author_path(t.author_id), {:style=>'color:black;'}  %>   </div>
+		   <div   class="col-xs-3" style="border-top: solid 1px grey;overflow:hidden;"> <%= t.code %> </div>
+		   <div  class="col-xs-3" style="border-top: solid 1px grey;" >  <%= link_to "Détails", detailresa_path(t.id) %></div>
+			
+
+		</div>
+
+
+
+		<% end %>
+
+
+
+
+
+
+
+
+
+<%  end  %>
+

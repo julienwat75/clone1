@@ -1,0 +1,34 @@
+<h3> page webmaster  </h3>
+
+
+<% @invitations2.each do |t| %>
+
+
+<% unless t.validation %>
+
+<p> 
+<b><%= t.titre  %></b>, <%= t.description  %>,<%= t.dateinvitation  %>,<%= t.author_id %>
+<%= link_to 'Show', t %>
+
+<%= link_to "Edit", [t], :action => 'edit' %>
+
+
+
+ 
+</p>
+
+<p>
+<% var=t.avatar.url %>
+<% var[0,23] = "https://s3-eu-west-1.amazonaws.com" %>
+</p>
+
+<img src="<%= var %>" alt="arobas" style="width:164px; height:164px;" />
+
+<% end  %>
+
+
+<%  end  %>
+
+<br>
+
+

@@ -1,0 +1,362 @@
+<% provide(:title, "Votre commande") %>
+
+<% nombre= params[:nombreinvitations] %>
+<% titre= @invitation.titre %>
+<% day= @multi.datex.day %>
+<% heure= @multi.datex.hour %>
+<% min= @multi.datex.min %>
+<% prix= @multi.price %>
+<% prix_eur= prix.to_f / 100 %>
+
+<% @amount= prix.to_i * nombre.to_i %>
+<% amount_eur=@amount.to_f / 100 %>
+
+
+
+
+  <% jour=@multi.datex.strftime("%A") %>  
+
+  <% mois=@multi.datex.strftime("%B")  %>
+
+<% case jour  %>
+ <% when "Monday"  %>
+ <%  jour= "Lundi" %> 
+ <% when "Tuesday"  %>
+ <%  jour= "Mardi" %> 
+<% when "Wednesday"  %>
+ <%  jour= "Mercredi" %>
+  <% when "Thursday"  %>
+ <%  jour= "Jeudi" %>
+  <% when "Friday"  %>
+ <%  jour= "Vendredi" %>
+  <% when "Saturday"  %>
+ <%  jour= "Samedi" %> 
+  <% when "Sunday"  %>
+ <%  jour= "Dimanche" %> 
+<% else  %>              
+ <% puts 'Only single-digit numbers are allowed' %>
+ <% end %>
+
+ <% case mois  %>
+ <% when "January"  %>
+ <%  mois= "Janvier" %> 
+ <% when "February"  %>
+ <%  mois= "Février" %> 
+<% when "March"  %>
+ <%  mois= "Mars" %>
+  <% when "April"  %>
+ <%  mois= "Avril" %>
+  <% when "May"  %>
+ <%  mois= "Mai" %>
+  <% when "June"  %>
+ <%  mois= "Juin" %>
+  <% when "July"  %>
+ <%  mois= "Juillet" %>
+  <% when "August"  %>
+ <%  mois= "Aout" %>
+  <% when "September"  %>
+ <%  mois= "Septembre" %>
+  <% when "October"  %>
+ <%  mois= "Octobre" %>
+   <% when "November"  %>
+ <%  mois= "Novembre" %>
+  <% when "December"  %>
+ <%  mois= "Décembre" %>
+<% else  %>              
+ 
+ <% end %>
+
+
+
+ <div class="row" style="margin-bottom:50px;">
+
+  <div class="col-lg-3"> </div>
+
+      
+   <div class="col-lg-6" style="text-align:center">
+
+               <h4>
+                <%= titre %>
+                </h4>
+
+                <h5>
+                
+                  <%= jour %> 
+                  <%= day %>
+                  <%= mois %>  à <%= heure %> H 
+                  <%= min  %>
+                </h5>
+                <div style="font-size:20px;" > <%= nombre %> x <%= prix_eur %>€</div>
+                <div style="font-size:20px;">Prix Total: <%= amount_eur %>€</div>
+
+
+                
+
+
+   </div>
+
+
+   
+
+
+     <div class="col-lg-3"> </div>
+
+
+   </div>
+
+
+
+
+   
+
+
+
+
+
+
+
+
+
+
+   <!-- -------   carte bleu --------------------------------------------------  -->
+
+<div class="col-lg-3"> </div>
+
+
+</div>
+
+
+ 
+<div class="row">
+
+    <div class="col-lg-3"> </div>
+
+      
+        <div class="col-lg-6">
+
+
+
+
+
+        <div style="float:left">
+        <font style="color:rgb(112, 191, 0);"><%= image_tag("cb.png", :alt => "rss feed",:style => "height:50px;margin-right:15px;") %></font>
+         </div>
+
+         <div style="float:left">
+        <font style="color:rgb(112, 191, 0);"><%= image_tag("visa.png", :alt => "rss feed",:style => "height:50px;margin-right:15px;") %></font>
+         </div>
+
+         <div style="float:left">
+        <font style="color:rgb(112, 191, 0);"><%= image_tag("mastercard.png", :alt => "rss feed",:style => "height:50px;margin-right:15px;") %></font>
+         </div>
+
+
+
+
+            <div class="col-lg-3"> </div>
+
+
+     </div>
+
+ </div> 
+
+
+
+ 
+ 
+
+<div class="row">
+
+  <div class="col-lg-3"> </div>
+
+      
+   <div class="col-lg-6">
+
+
+    <br><br><br>
+ 
+  <%= form_tag charges_path, :id => 'payment-form' do %>
+ 
+  <span class="payment-errors"></span>
+
+
+  <div class="form-row">
+    
+      
+      <input type="text"  data-stripe="name" placeholder="Nom et prenom du porteur de la carte" style="width:100%;color:black;font-size:16px;" />
+    
+  </div>
+  <br>
+
+  <div class="form-row">
+    
+      
+      <input type="text" size="20" data-stripe="address_line1" placeholder="Adresse" style="width:100%;color:black;font-size:16px;color:black;" />
+    
+  </div>
+ <br>
+  <div class="form-row">
+    
+     
+      <input type="text"  data-stripe="address_zip" placeholder="Code Postal" style="width:100%;color:black;font-size:16px;" />
+    
+  </div>
+<br>
+  <div class="form-row">
+  
+      
+      <input type="text" size="20" data-stripe="address_city" placeholder="Ville" style="width:100%;color:black;font-size:16px;"/>
+    
+  </div>
+<br>
+  <div class="form-row">
+    
+      
+      <input type="text" size="20" data-stripe="email" placeholder="E-mail" style="width:100%;color:black;font-size:16px;"  />
+    
+  </div>
+  <br>
+
+  <div class="form-row">
+    
+     
+      <input type="text" size="20" data-stripe="number" placeholder="Numero de carte de credit" style="width:100%;color:black;font-size:16px;"/>
+    
+  </div>
+<br>
+  <div class="form-row">
+    
+     
+      <input type="text" size="4" data-stripe="cvc" placeholder="3 derniers chiffres au dos de la carte" style="width:100%;color:black;font-size:16px;"/>
+  
+  </div>
+<br><br>
+  <div class="form-row">
+    
+      
+      <input type="text" size="2" data-stripe="exp-month" placeholder="Mois d'exipation (MM)" style="color:black;font-size:16px;width:100%;"/>
+  </div>    
+    
+    <br>
+<div class="form-row">
+  
+    <input type="text" size="4" data-stripe="exp-year" style="color:black;font-size:16px;width:100%;" placeholder="Année d'expiration (AAAA)"/>
+  </div>
+<br>
+   <input  type="hidden" value="<%=  @amount  %>" name="heure1" >
+
+         <input  type="hidden" value="<%=   @invitation.titre  %>" name="titre">
+         <input  type="hidden" value="<%=   @multi.datex  %>" name="dateinvitation">
+         <input  type="hidden" value="<%=   @invitation.adresse  %>" name="adresse">
+         <input  type="hidden" value="<%=   @invitation.vraiadresse  %>" name="vraiadresse">
+         <input  type="hidden" value="<%=   @invitation.id  %>" name="idinvitation">
+         <input  type="hidden" value="<%=   @invitation.emailpartenaire  %>" name="emailpartenaire">
+         <input  type="hidden" value="<%=   @multi.id  %>" name="idmulti">
+         <input  type="hidden" value="<%=   nombre  %>" name="nombreinvitations">
+
+
+   <input type="submit" id="yaf" value="Valider" class="btn btn-default btn-lg monbouton">
+
+
+
+
+<% end %>
+
+
+
+  </div>
+
+
+  <div class="col-lg-3"> </div>
+
+
+
+</div>
+
+
+
+
+<div class="row">
+
+  <div class="col-lg-3"> </div>
+
+      
+   <div class="col-lg-6">
+
+
+
+
+
+
+
+
+<div style="margin-top:50px;text-align:left;">
+   <font style="color:rgb(112, 191, 0);"><%= image_tag("lock.ico", :alt => "rss feed",:style => "height:20px;width:20px;") %></font>
+
+     Paiement sécurisé de votre commande.
+
+   </div><br><br>
+
+
+  <div style="text-align:left;">
+          
+- La saisie de vos données sur cette page est entièrement sécurisée grâce au cryptage SSL.<br>
+
+- Le paiement s'effectue avec Stripe,un système de paiement international sécurisé.<br>
+
+- Billetgratuit ne conserve pas vos informations de paiement.
+
+  </div>
+
+
+   
+
+
+
+   <div class="col-lg-3"> </div>
+
+
+ </div> 
+
+
+
+                      <!--      Fin carte bleu -------------------------------------------------  -->
+
+
+
+ <script>
+
+    var stripeResponseHandler = function(status, response) {
+  var $form = $('#payment-form');
+   console.log("yaf")
+  if (response.error) {
+    // Show the errors on the form
+    $form.find('.payment-errors').text(response.error.message);
+    $form.find('button').prop('disabled', false);
+  } else {
+    // token contains id, last4, and card type
+    var token = response.id;
+    // Insert the token into the form so it gets submitted to the server
+    $form.append($('<input type="hidden" name="stripeToken" />').val(token));
+    // and submit
+    $form.get(0).submit();
+  }
+};
+
+$(document).ready(function(){
+  Stripe.setPublishableKey('pk_live_pgl4KEt7tF07BOyWuVI5RcaM');
+  $('#payment-form').bind("submit", function(){
+      var $form = $(this);
+
+      // Disable the submit button to prevent repeated clicks
+      $form.find('button').prop('disabled', true);
+
+      Stripe.card.createToken($form, stripeResponseHandler);
+
+      // Prevent the form from submitting with the default action
+      return false;
+  });
+})
+
+</script>
+ 

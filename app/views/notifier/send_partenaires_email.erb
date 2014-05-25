@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+    <body>
+
+  <% @datelimite=@multi.datelimite %>
+    
+
+
+   <% jour=@multi.datex.strftime("%A") %>  
+
+   <% mois=@multi.datex.strftime("%B")  %>
+
+
+   <% jour2=@datelimite.strftime("%A") %>  
+
+   <% mois2=@datelimite.strftime("%B")  %>
+
+
+
+<% case jour  %>
+ <% when "Monday"  %>
+ <%  jour= "Lundi" %> 
+ <% when "Tuesday"  %>
+ <%  jour= "Mardi" %> 
+<% when "Wednesday"  %>
+ <%  jour= "Mercredi" %>
+  <% when "Thursday"  %>
+ <%  jour= "Jeudi" %>
+  <% when "Friday"  %>
+ <%  jour= "Vendredi" %>
+  <% when "Saturday"  %>
+ <%  jour= "Samedi" %> 
+  <% when "Sunday"  %>
+ <%  jour= "Dimanche" %> 
+<% else  %>              
+ <% puts 'Only single-digit numbers are allowed' %>
+ <% end %>
+
+ <% case mois  %>
+ <% when "January"  %>
+ <%  mois= "Janvier" %> 
+ <% when "February"  %>
+ <%  mois= "Février" %> 
+<% when "March"  %>
+ <%  mois= "Mars" %>
+  <% when "April"  %>
+ <%  mois= "Avril" %>
+  <% when "May"  %>
+ <%  mois= "Mai" %>
+  <% when "June"  %>
+ <%  mois= "Juin" %>
+  <% when "July"  %>
+ <%  mois= "Juillet" %>
+  <% when "August"  %>
+ <%  mois= "Aout" %>
+  <% when "September"  %>
+ <%  mois= "Septembre" %>
+  <% when "October"  %>
+ <%  mois= "Octobre" %>
+   <% when "November"  %>
+ <%  mois= "Novembre" %>
+  <% when "December"  %>
+ <%  mois= "Décembre" %>
+<% else  %>              
+ 
+ <% end %>
+
+
+ <% case jour2  %>
+ <% when "Monday"  %>
+ <%  jour2= "Lundi" %> 
+ <% when "Tuesday"  %>
+ <%  jour2= "Mardi" %> 
+<% when "Wednesday"  %>
+ <%  jour2= "Mercredi" %>
+  <% when "Thursday"  %>
+ <%  jour2= "Jeudi" %>
+  <% when "Friday"  %>
+ <%  jour2= "Vendredi" %>
+  <% when "Saturday"  %>
+ <%  jour2= "Samedi" %> 
+  <% when "Sunday"  %>
+ <%  jour2= "Dimanche" %> 
+<% else  %>              
+ <% puts 'Only single-digit numbers are allowed' %>
+ <% end %>
+
+ <% case mois2  %>
+ <% when "January"  %>
+ <%  mois2= "Janvier" %> 
+ <% when "February"  %>
+ <%  mois= "Février" %> 
+<% when "March"  %>
+ <%  mois2= "Mars" %>
+  <% when "April"  %>
+ <%  mois2= "Avril" %>
+  <% when "May"  %>
+ <%  mois2= "Mai" %>
+  <% when "June"  %>
+ <%  mois2= "Juin" %>
+  <% when "July"  %>
+ <%  mois2= "Juillet" %>
+  <% when "August"  %>
+ <%  mois2= "Aout" %>
+  <% when "September"  %>
+ <%  mois2= "Septembre" %>
+  <% when "October"  %>
+ <%  mois2= "Octobre" %>
+   <% when "November"  %>
+ <%  mois2= "Novembre" %>
+  <% when "December"  %>
+ <%  mois2= "Décembre" %>
+<% else  %>              
+ 
+ <% end %>
+
+
+
+
+   <h2>Reservations BilletGratuit.com</h2>
+
+   <% if @multi.genre == "spectacle" %>
+
+               <h3>
+
+                Liste des réservations pour le spectacle :<font color="blue">(<%=  @invitations.titre %>)
+
+               Le <%= jour %> 
+                  <%= @multi.datex.day %> 
+                  <%= mois %>  à <%= @multi.datex.hour  %> H 
+                  <%= @multi.datex.min  %>
+                </font>
+
+              </h3>
+
+     <% else %> 
+     
+              <h3>
+
+                Liste des réservations pour l'offre:
+
+                <font color="blue">
+
+
+                  (<%=  @invitations.titre %>)
+
+               Du <%= jour %> 
+                  <%= @multi.datex.day %> 
+                  <%= mois %> à
+                  <%= @multi.datex.hour %> H  <%= @multi.datex.min %>
+
+
+
+                 Au <%= jour2 %> 
+                 <%= @datelimite.day %> 
+                 <%= mois2 %> à
+                 <%= @datelimite.hour %> H  <%= @datelimite.min %>
+
+                 
+
+
+                </font>
+
+              </h3>
+
+
+
+
+
+     <% end %>        
+
+
+
+
+
+
+    <br><br>
+
+
+
+    
+
+    <ul>
+
+           <% @invitations.reservations.each do |resa| %>
+
+
+            <% if resa.dateinvitation == @multi.datex %>
+
+         
+                      <li>
+
+                   <h4>  
+
+                 
+                  <%= resa.sexe %> <%= resa.author_nom %> <%= resa.author_prenom %>, Code: <%= resa.code %>,
+
+                  
+
+                    Nombre de réservations:  <font color="blue"><%= resa.nombreinvitations %></font>
+
+
+
+                   <%  if resa.gratuit %>
+
+                    (Invitation)
+
+
+                   <% else %>
+
+                       
+                      
+                     <% @taro=resa.price.to_f/100 %>
+                     (Tarif préférentiel)(<%= @taro %>€)
+                    
+                     
+
+
+
+
+                   <% end %>
+
+                   
+
+                    </h4>
+
+                       </li>
+
+              <% end  %>       
+
+          <% end %>
+
+    </ul>
+
+
+    <br>
+    <br>
+    <p>Merci</p>
+    <p>L'équipe BilletGratuit </p>
+    <p> http://www.billetgratuit.com </p>
+
+
+   </body>
+</html>
+

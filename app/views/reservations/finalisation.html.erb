@@ -1,0 +1,258 @@
+<% provide(:title, "Finaliser votre commande") %>
+
+
+
+      <% jour=@multi.datex.strftime("%A") %>  
+
+  <% mois=@multi.datex.strftime("%B")  %>
+
+<% case jour  %>
+ <% when "Monday"  %>
+ <%  jour= "Lundi" %> 
+ <% when "Tuesday"  %>
+ <%  jour= "Mardi" %> 
+<% when "Wednesday"  %>
+ <%  jour= "Mercredi" %>
+  <% when "Thursday"  %>
+ <%  jour= "Jeudi" %>
+  <% when "Friday"  %>
+ <%  jour= "Vendredi" %>
+  <% when "Saturday"  %>
+ <%  jour= "Samedi" %> 
+  <% when "Sunday"  %>
+ <%  jour= "Dimanche" %> 
+<% else  %>              
+ <% puts 'Only single-digit numbers are allowed' %>
+ <% end %>
+
+ <% case mois  %>
+ <% when "January"  %>
+ <%  mois= "Janvier" %> 
+ <% when "February"  %>
+ <%  mois= "Février" %> 
+<% when "March"  %>
+ <%  mois= "Mars" %>
+  <% when "April"  %>
+ <%  mois= "Avril" %>
+  <% when "May"  %>
+ <%  mois= "Mai" %>
+  <% when "June"  %>
+ <%  mois= "Juin" %>
+  <% when "July"  %>
+ <%  mois= "Juillet" %>
+  <% when "August"  %>
+ <%  mois= "Aout" %>
+  <% when "September"  %>
+ <%  mois= "Septembre" %>
+  <% when "October"  %>
+ <%  mois= "Octobre" %>
+   <% when "November"  %>
+ <%  mois= "Novembre" %>
+  <% when "December"  %>
+ <%  mois= "Décembre" %>
+<% else  %>              
+ 
+ <% end %>
+
+
+
+
+<div class="row" >
+  <div  class="col-xs-0 col-sm-3 col-md-3 col-lg-3"></div>
+
+
+
+
+  <div  class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+
+
+
+ <% if @multi.placex.to_i > 0 && @multi.gratuit  %>
+
+
+
+<%= form_for [ @reservation ] do |f| %>
+<div align="center">
+
+
+  <h4>
+  <%= @invitation.titre %>
+  </h4>
+
+<h5>
+   <%= jour %> 
+  <%= @multi.datex.day %> 
+  <%= mois %>  à <%= @multi.datex.hour  %> H 
+  <%= @multi.datex.min  %>
+</h5>
+
+  
+
+   
+
+   
+   
+   <input  type="hidden" value="<%=   @invitation.titre  %>" name="titre">
+   <input  type="hidden" value="<%=   @multi.datex  %>" name="dateinvitation">
+   <input  type="hidden" value="<%=   @invitation.adresse  %>" name="adresse">
+   <input  type="hidden" value="<%=   @invitation.vraiadresse  %>" name="vraiadresse">
+   
+   <input  type="hidden" value="<%=   @invitation.id  %>" name="idinvitation">
+   <input  type="hidden" value="<%=   @invitation.emailpartenaire  %>" name="emailpartenaire">
+
+    <input  type="hidden" value="<%=   @multi.id  %>" name="idmulti">
+
+
+
+
+
+  
+  
+   
+  <div style="margin-bottom:20px;font-size:20px;">
+  <div style="margin-bottom:15px;text-align:center;"> Nombre de places </div>
+
+  <% if @multi.placex.to_i > 1  %>
+
+  
+<%= f.select :nombreinvitations, [['1',1], 2] ,:style =>'color:grey;width:100%;font-size:22px;text-align:center;' %>
+  
+  <% else  %>
+
+  <%= f.select :nombreinvitations, [['1(Derniere place)',1]] ,:class =>'grandbouton'  %>
+  <%end %>
+
+  </div>
+
+ 
+
+
+  <div style="font-size:22px;color:blue;">
+    <%= f.submit 'Commander',:class=>'btn btn-default btn-lg monbouton' %>
+  </div>
+
+<div style="margin-top:15px;text-align:left;">
+  (Ne réserver que si vous êtes sûr d'aller au spectacle , afin de laisser l'opportunité aux autres membres de profiter des services de billetgratuit.com.)   
+   
+</div>
+
+<div style="margin-top:15px;text-align:left;">
+
+(Le fait de réserver sans aller aux spectacles peut entraîner la suppression de votre compte billetgratuit.)
+
+
+</div>
+  
+  
+ </div>
+  <% end %>
+
+
+  
+
+  <% end %>
+
+  <!-- -------------------------if payant --------------------------------------------------- -->
+
+  <% if @multi.placex.to_i > 0 && @multi.gratuit==false  %>
+
+
+
+
+<div align="center">
+
+
+  <h4>
+  <%= @invitation.titre %>
+  </h4>
+
+<h5>
+   <%= jour %> 
+  <%= @multi.datex.day %> 
+  <%= mois %>  à <%= @multi.datex.hour  %> H 
+  <%= @multi.datex.min  %>
+</h5>
+
+  
+
+   
+
+   
+   
+   
+    
+
+
+
+
+  <% prix_eur= @multi.price.to_f / 100 %>
+  
+   
+  <div style="margin-bottom:20px;font-size:20px;">
+  <div style="margin-bottom:15px;text-align:center;"> Prix: <%= prix_eur %>€ </div>
+ 
+  <div style="margin-bottom:15px;text-align:center;"> Nombre de places </div>
+
+  <% if @multi.placex.to_i > 1  %>
+
+   <form action="/charges/new">
+
+    <SELECT name="nombreinvitations"  style="color:grey;font-size:22px;">
+     
+    <option value="1">1</option>
+    <option value="2">2</option>                                  
+    </select>                                  
+   
+     <input  type="hidden" value="<%=  @multi.id  %>" name="idmulti">
+     <input  type="hidden" value="<%=  @invitation.id  %>" name="idinvite">
+     
+     <br><br>
+     <input type="submit" value="Continuer">
+    </form>
+
+  <%else %>
+
+    <form action="/charges/new">
+
+    <SELECT name="nombreinvitations"  style="color:grey;font-size:22px;">
+     
+     <option value="1">1</option>
+     
+     </select>
+    
+     <input  type="hidden" value="<%=  @multi.id  %>" name="idmulti">
+     <input  type="hidden" value="<%=  @invitation.id  %>" name="idinvite">
+     
+     
+    
+     
+
+     <br><br>
+     <input type="submit" value="Continuer">
+     </form>
+  <% end %>
+
+  </div>
+
+ 
+
+  
+  
+ </div>
+  
+
+
+
+
+
+  <% end %>
+
+
+  <!-- ------------------------------------------------------------------------------------------ -->
+</div>
+
+  <div  class="col-xs-0 col-sm-3 col-md-3 col-lg-3"></div>
+
+</div>
+
+                         

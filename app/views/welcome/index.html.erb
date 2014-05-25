@@ -1,0 +1,102 @@
+ 
+<% provide(:title, "Se connecter") %>
+
+<div class="row " >
+
+    <div class="col-xs-0 col-sm-4 col-md-4 col-lg-4 text-center " ></div>
+
+
+     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 text-center " >
+
+
+
+
+
+
+                              <div style="margin-bottom:200px;">
+
+                                    
+                                     
+
+
+                                     <br><br>
+
+                                    <%= form_tag author_sessions_path, method: :post do %>
+
+                                    <div class="field">
+                                    <%=  text_field_tag :username, "Email",:style =>'color:grey;width:100%;font-size:19px;' %>
+                                    
+                                   </div>
+
+                                   <br>
+                                  
+                                  <div class="field">
+                                    
+                                   <%= password_field_tag :password, nil, placeholder: "Password" ,:style =>'padding:10px;color:grey;width:100%;font-size:19px;', :class => 'couleurnoir'   %>
+
+                                  </div>
+
+                                   <div style="margin:20px;"><a style="color:black;" href="/pages/forgot_password.html"> Mot de passe oublié?</a> </div>
+
+
+                                    <div style="margin-top:20px;width:100%;"> 
+                                      <%= submit_tag  "Se connecter", :class => 'btn btn-default btn-lg',:style =>'width:100%;'  %>
+                                    </div>
+                         
+                               
+
+                                   <% end %>
+
+                                   <div style="margin-top:30px;margin-bottom:20px;"> Pas encore membre?</div>
+                        
+
+                                    
+                                  <div style="margin-top:0px;width:100%;background:grey;"> 
+                                    <%= link_to "S'inscrire", new_author_path,  :class=>"btn btn-inscription btn-lg",:style =>'color:white;' %>
+
+                                  </div>
+
+                                   <div style="margin-top:50px;"> 
+                                   <a href="https://www.facebook.com/Simplon.co?fref=ts">
+                                     <img src="http://billetgratuit.herokuapp.com/images/simplon.png" alt="arobas" height="40" />
+                                     </a>
+                                   </div>
+
+                                    <div style="margin-top:50px;">
+                                   <a href="http://www.cwb.fr/" >
+                                     <img src="http://www.cwb.fr/bundles/lehubagencecwb/images/cwb-logo.png?v1"  height="50"  />
+                                     </a>
+                                   </div>
+
+                                      <div style="margin-top:30px;">
+                                     <a href="http://www.theatredunois.org/site/">
+                                     <img src="http://www.sudplanete.net/_uploads/images/personnes/Dunois_Theatre0.jpg"  height="70" />
+                                     </a>
+                                   </div>
+
+
+
+                            
+                          </div>
+
+
+
+
+
+
+                          
+                                 
+
+
+
+
+
+
+                   </div>
+
+      <div class="col-xs-0 col-sm-4 col-md-4 col-lg-4 text-center " ></div>
+
+ </div>     
+
+
+           

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+
+   <% jour=@paiment.date1.strftime("%A") %>  
+
+   <% mois=@paiment.date1.strftime("%B")  %>
+
+   <% jour2=@paiment.updated_at.strftime("%A") %>  
+
+   <% mois2=@paiment.updated_at.strftime("%B")  %>
+
+
+<% case jour  %>
+ <% when "Monday"  %>
+ <%  jour= "Lundi" %> 
+ <% when "Tuesday"  %>
+ <%  jour= "Mardi" %> 
+<% when "Wednesday"  %>
+ <%  jour= "Mercredi" %>
+  <% when "Thursday"  %>
+ <%  jour= "Jeudi" %>
+  <% when "Friday"  %>
+ <%  jour= "Vendredi" %>
+  <% when "Saturday"  %>
+ <%  jour= "Samedi" %> 
+  <% when "Sunday"  %>
+ <%  jour= "Dimanche" %> 
+<% else  %>              
+ <% puts 'Only single-digit numbers are allowed' %>
+ <% end %>
+
+ <% case mois  %>
+ <% when "January"  %>
+ <%  mois= "Janvier" %> 
+ <% when "February"  %>
+ <%  mois= "Février" %> 
+<% when "March"  %>
+ <%  mois= "Mars" %>
+  <% when "April"  %>
+ <%  mois= "Avril" %>
+  <% when "May"  %>
+ <%  mois= "Mai" %>
+  <% when "June"  %>
+ <%  mois= "Juin" %>
+  <% when "July"  %>
+ <%  mois= "Juillet" %>
+  <% when "August"  %>
+ <%  mois= "Aout" %>
+  <% when "September"  %>
+ <%  mois= "Septembre" %>
+  <% when "October"  %>
+ <%  mois= "Octobre" %>
+   <% when "November"  %>
+ <%  mois= "Novembre" %>
+  <% when "December"  %>
+ <%  mois= "Décembre" %>
+<% else  %>              
+ 
+ <% end %>
+
+
+ <% case jour2  %>
+ <% when "Monday"  %>
+ <%  jour2= "Lundi" %> 
+ <% when "Tuesday"  %>
+ <%  jour2= "Mardi" %> 
+<% when "Wednesday"  %>
+ <%  jour2= "Mercredi" %>
+  <% when "Thursday"  %>
+ <%  jour2= "Jeudi" %>
+  <% when "Friday"  %>
+ <%  jour2= "Vendredi" %>
+  <% when "Saturday"  %>
+ <%  jour2= "Samedi" %> 
+  <% when "Sunday"  %>
+ <%  jour2= "Dimanche" %> 
+<% else  %>              
+ <% puts 'Only single-digit numbers are allowed' %>
+ <% end %>
+
+ <% case mois2  %>
+ <% when "January"  %>
+ <%  mois2= "Janvier" %> 
+ <% when "February"  %>
+ <%  mois2= "Février" %> 
+<% when "March"  %>
+ <%  mois2= "Mars" %>
+  <% when "April"  %>
+ <%  mois2= "Avril" %>
+  <% when "May"  %>
+ <%  mois2= "Mai" %>
+  <% when "June"  %>
+ <%  mois2= "Juin" %>
+  <% when "July"  %>
+ <%  mois2= "Juillet" %>
+  <% when "August"  %>
+ <%  mois2= "Aout" %>
+  <% when "September"  %>
+ <%  mois2= "Septembre" %>
+  <% when "October"  %>
+ <%  mois2= "Octobre" %>
+   <% when "November"  %>
+ <%  mois2= "Novembre" %>
+  <% when "December"  %>
+ <%  mois2= "Décembre" %>
+<% else  %>              
+ 
+ <% end %>
+
+
+<% var2="http://billetgratuit.herokuapp.com/images/logo.png"  %>
+<% prix_total=@paiment.prix_ttc.to_f/100 %> 
+<% prix_unitaire=@paiment.prix_unitaire.to_f/100 %>
+
+                          <div style="background:background: none repeat scroll 0% 0% rgb(248, 248, 248);" >
+
+                               
+                                  <div align="left">
+                                    <a href="http://billetgratuit.com">
+                                   <img src="<%= var2 %>" alt="arobas" style="width:40%;" />
+                                    </a>
+                                    </div>
+                                
+                                  
+                                         
+                              </div>
+
+   <div class="row" >
+
+             <div   class="col-lg-12 fondgris" > 
+
+              Facture  <br>
+              Ref:BG<%= @paiment.id %>
+
+
+             </div>
+   </div>  
+
+    <div class="row" >
+
+             <div   class="col-lg-12 fondgris " style="margin-top:30px;" >
+
+              <%= @paiment.nom %> <%= @paiment.prenom %><br>
+              <%= @paiment.adresse %> <br>
+              <%= @paiment.postal %> <%= @paiment.ville %>
+
+              </div>
+
+   </div>
+
+<br><br>
+
+<div class="row" >
+
+             <div   class="col-lg-12 fondgris "  >
+
+              <strong>PAYEE<strong>
+              </div>
+
+   </div>
+
+<br><br>
+
+
+
+<div class="row" >
+
+             <div   class="col-lg-12 fondgris " >
+
+              Paris le 
+               <%= jour2 %> 
+               <%= @paiment.updated_at.day %> 
+               <%= mois2 %>  à <%= @paiment.updated_at.hour   %> H 
+               <%= @paiment.updated_at.min  %>
+
+              </div>
+
+   </div>
+
+
+
+
+
+
+
+ <br><br>    
+
+
+
+<TABLE frame="border" cellpadding="2" style="width:100%;">
+  <TR style="text-align:left;">
+   <TH  style="width:50%;"> Libelle</TH>
+   <TH > Nombre </TH>
+   <TH > Montant</TH>
+   
+  </TR>
+  <TR>
+   <TD> 
+   
+   <%= @paiment.titre %> <br>
+
+    <%= jour %> 
+    <%= @paiment.date1.day %> 
+    <%= mois %>  à <%= @paiment.date1.hour  %> H 
+    <%= @paiment.date1.min  %>
+  
+
+  </TD>
+  </TR>
+  <TR >
+   <TD > Places</TD>
+   <TD> 
+    <%= @paiment.nombre %> x
+    <%=  prix_unitaire %> €
+   </TD>
+   <TD>  <%= prix_total %>€</TD>
+  </TR>
+  <TR >
+   <TD> Frais Réservation</TD>
+   <TD> <%= @paiment.nombre %> x 0€00
+   </TD>
+   <TD> 0€00</TD>
+  </TR>
+  <TR >
+   <TD> Total HT</TD>
+   <TD> </TD>
+   <TD> <%= prix_total %>€</TD>
+  </TR>
+  <TR>
+   <TD> Total TVA</TD>
+   <TD> </TD>
+   <TD> 0€00</TD>
+  </TR>
+  <TR>
+   <TD> Total TTC</TD>
+   <TD> </TD>
+   <TD> <%= prix_total %>€</TD>
+  </TR>
+</TABLE>
+
+<br><br>
+
+
+<p>Réglée par Carte Bancaire le 
+
+ <%=@paiment.updated_at.day%>/<%=@paiment.updated_at.month %>/<%=@paiment.updated_at.year%>
+ <%=@paiment.updated_at. hour%> H 
+ <%= @paiment.updated_at.min%>
+
+
+
+ </p>
+
+<br><br>
+
+
+<p> TVA non applicable en application de l’article 261 du CGI</p>
+
+<br><br>
+
+
+<p>billetgratuit.com</p>
+
+
+
+
+    
+
+  </body>
+</html>
+

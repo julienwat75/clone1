@@ -1,0 +1,218 @@
+<% provide(:title, "Réservation de votre spéctacle") %>
+
+
+
+  <!-- ----compteur invitations gratuites et invitations préférentiel  ----------------------- -->
+
+
+
+
+
+<% @gratuit=0 %>
+<% @preferentiel=0 %>
+
+<% @invitation.multidates.order(:datex).each do |h| %>
+
+
+    <% if h.placex.to_i > 0 && Invitation.late(h.datex)  %>
+
+                    
+
+                   
+
+                  <% if h.gratuit %>
+
+                  <% @gratuit=@gratuit.to_i + 1 %>
+
+
+                  <% else %>
+
+                  <% @preferentiel=@preferentiel.to_i + 1 %>
+                   <% @prix_preferentiel=h.price %>
+                    <% @prix_normal=h.prix_normal %>
+ 
+
+
+                  <% end %>
+
+     <% end %>             
+
+
+
+
+<% end %>
+
+
+
+
+<!-- -- fin compteur invitation gratuites --------------------- -->
+
+
+
+
+<div class="row" >
+  <div  class="col-xs-0 col-md-2 col-lg-2"></div>
+
+  <div  class="col-xs-12 col-md-8 col-lg-8" style="text-align:center;padding:20px;">
+
+
+  <h4>
+  <%= @invitation.titre %> 
+  </h4>
+
+  
+
+   
+
+    <div style="margin-bottom:15px;text-align:center;font-size:20px;">Choisir une date </div> <br>
+ 
+    <% @multidate.each do |t| %>
+
+
+                        
+
+      <% jour=t.datex.strftime("%A") %>  
+
+  <% mois=t.datex.strftime("%B")  %>
+
+<% case jour  %>
+ <% when "Monday"  %>
+ <%  jour= "Lundi" %> 
+ <% when "Tuesday"  %>
+ <%  jour= "Mardi" %> 
+<% when "Wednesday"  %>
+ <%  jour= "Mercredi" %>
+  <% when "Thursday"  %>
+ <%  jour= "Jeudi" %>
+  <% when "Friday"  %>
+ <%  jour= "Vendredi" %>
+  <% when "Saturday"  %>
+ <%  jour= "Samedi" %> 
+  <% when "Sunday"  %>
+ <%  jour= "Dimanche" %> 
+<% else  %>              
+ <% puts 'Only single-digit numbers are allowed' %>
+ <% end %>
+
+ <% case mois  %>
+ <% when "January"  %>
+ <%  mois= "Janvier" %> 
+ <% when "February"  %>
+ <%  mois= "Février" %> 
+<% when "March"  %>
+ <%  mois= "Mars" %>
+  <% when "April"  %>
+ <%  mois= "Avril" %>
+  <% when "May"  %>
+ <%  mois= "Mai" %>
+  <% when "June"  %>
+ <%  mois= "Juin" %>
+  <% when "July"  %>
+ <%  mois= "Juillet" %>
+  <% when "August"  %>
+ <%  mois= "Aout" %>
+  <% when "September"  %>
+ <%  mois= "Septembre" %>
+  <% when "October"  %>
+ <%  mois= "Octobre" %>
+   <% when "November"  %>
+ <%  mois= "Novembre" %>
+  <% when "December"  %>
+ <%  mois= "Décembre" %>
+<% else  %>              
+ 
+ <% end %>
+
+
+ <% if @gratuit>0 %>
+
+            <% if (t.placex.to_i > 0 && Invitation.late(t.datex) && t.gratuit) || (current_user.id==3  && Invitation.late(t.datex) )    %>
+
+                    <ul>
+                     <li><h4 style="text-align:left;"> 
+                      <a href="/reservations/finalisation?idmulti=<%= t.id %>&id=<%= @invitation.id %>&gratuit=<%= t.gratuit %>">
+
+                      <%= jour %> 
+                      <%= t.datex.day %> 
+                      <%= mois %>  à <%= t.datex.hour  %> H 
+                      <%= t.datex.min  %>
+
+
+
+                     </a> </h4></li>
+                    </ul>
+                    <% if current_user.id==3 %>
+                        <% if t.gratuit %>
+
+                        <h5 style="text-align:left;">(Invitation) Places restante:<font color="red"><%= t.placex %></font> </h5>
+                        <h5> <%= link_to 'Supprimer', reservation_path(t), method: :delete, data: { confirm: 'Are you sure?' } %>  <%= link_to 'Editer', edit_multidate_path(t) %></h5>
+                        <% else %>
+
+                        <h5 style="text-align:left;">Tarif préferentiel  Places restante:<font color="red"><%= t.placex %></h5>
+                        <h5></font> <%= link_to 'Supprimer', reservation_path(t), method: :delete, data: { confirm: 'Are you sure?' } %> <%= link_to 'Editer', edit_multidate_path(t) %></h5>
+
+                       <% end %>
+                    <% end %>
+
+
+
+
+
+              <% end %>  <!-- Fin du if --------- -->
+
+       <% else %> 
+
+          <% if (t.placex.to_i > 0 && Invitation.late(t.datex) ) || (current_user.id==3  && Invitation.late(t.datex) )  %>
+
+                    <ul>
+                     <li><h4 style="text-align:left;"> 
+                      <a href="/reservations/finalisation?idmulti=<%= t.id %>&id=<%= @invitation.id %>&gratuit=<%= t.gratuit %>">
+
+                      <%= jour %> 
+                      <%= t.datex.day %> 
+                      <%= mois %>  à <%= t.datex.hour  %> H 
+                      <%= t.datex.min  %>
+
+
+
+                     </a> </h4></li>
+                    </ul>
+                    <% if current_user.id==3 %>
+                        <% if t.gratuit %>
+
+                        <h5 style="text-align:left;">(Invitation) Places restante:<font color="red"><%= t.placex %></font> </h5>
+                        <h5><%= link_to 'Supprimer', reservation_path(t), method: :delete, data: { confirm: 'Are you sure?' } %> <%= link_to 'Editer', edit_multidate_path(t) %></h5>
+                        <% else %>
+
+                        <h5 style="text-align:left;">Tarif préferentiel  Places restante:<font color="red"><%= t.placex %></font> </h5>
+                        <h5><%= link_to 'Supprimer', reservation_path(t), method: :delete, data: { confirm: 'Are you sure?' } %>
+                          <%= link_to 'Editer', edit_multidate_path(t) %> </h5>
+
+                          
+
+                       <% end %>
+                    <% end %>
+
+
+
+
+
+              <% end %>  <!-- Fin du if --------- -->
+
+
+
+        <% end %>
+                                       
+  <% end %>   <!-- Fin de la boucle --------- -->                                
+             
+  
+
+
+</div>  
+
+  <div  class="col-xs-0 col-md-2 col-lg-2"></div>
+
+
+</div> <!-- fin du div row -->
+
+

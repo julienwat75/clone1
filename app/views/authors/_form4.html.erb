@@ -1,0 +1,235 @@
+
+
+
+ <div class="row " >
+
+    <div class="col-xs-0 col-sm-4 col-md-4 col-lg-4 text-center " ></div>
+
+
+     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 text-center " >
+
+                 <div style="margin-bottom:100px;">
+            
+                      <h2 ><small><font color="white">Inscription</font></small></h2><br>
+
+
+
+
+              <% if current_user.id == 3 %>
+
+                     
+                      
+                     <%= form_for(@author) do |f| %>
+                      <% if @author.errors.any? %>
+
+                      
+                        <div id="error_explanation">
+                          <h4><font color="red"><%= pluralize(@author.errors.count, "error") %> Erreurs de saisies:</font></h4>
+
+                          <ul>
+                          <% @author.errors.full_messages.each do |msg| %>
+
+                           
+                            
+                          <% end %>
+
+                          <li>Pseudo(entre 5 et 9 caractères )</li>
+                          <li>Password(min 5 caractères)</li>
+
+                          </ul>
+                        </div>
+                      <% end %>
+                      
+                     
+
+
+
+                     <div class="field">
+                      
+                  <%= f.text_field :email  , :placeholder => "Pseudo",:style =>'color:grey;width:100%;font-size:22px;' %>
+                      
+                    </div>
+
+                    <br>
+
+
+                  
+
+
+
+                     <div class="field">
+                      
+                  <%= f.text_field :nom  , :placeholder => "Nom",:style =>'color:grey;width:100%;font-size:22px;' %>
+                 
+                     </div>
+
+                      <br>
+
+                    
+                     
+                     <div class="field">
+                      
+                  <%= f.text_field :prenom  , :placeholder => "Prenom",:style =>'color:grey;width:100%;font-size:22px;' %>
+                 
+                    </div>
+
+                     <br>
+
+                     <h3> Points positifs</h3>
+
+                      <div class="field">
+                 
+                  <input type="textarea" name="point_positif" style="color:red;width:100%;font-size:22px;" value="<%= @author.point_positif %>">
+                 
+                    </div>
+
+                     <br>
+
+                      <h3> Points négatifs </h3>
+
+                       <div class="field">
+                      
+                   <input type="textarea" name="point_negatif" style="color:red;width:100%;font-size:22px;" value="<%= @author.point_negatif %>">
+                 
+                    </div>
+
+                     <br>
+
+
+                       <div class="field">  
+                                  <SELECT name="ville" style="color:grey;width:100%;font-size:22px;">
+                                  <option value="Paris" selected="paris" style="color:white; font-size:0px;">Ville</option> 
+                                  <option value="Paris"> Paris   </option>
+                                 <option value="Marseille"> Marseille  </option>
+                                 <option value="Lyon"> Lyon  </option>
+                                 <option value="Toulouse"> Toulouse  </option>
+                                 <option value="Nice"> Nice  </option> 
+                                 <option value="Nantes"> Nantes </option>
+                                 <option value="Strasbourg"> Strasbourg  </option> 
+                                 <option value="Montpellier"> Montpellier  </option>
+                                 <option value="Bordeaux"> Bordeaux  </option> 
+                                 <option value="Lille"> Lille </option>
+                                 <option value="Rennes"> Rennes </option>
+                                 <option value="Reims"> Reims   </option>
+                                 <option value="Le Havre"> Le Havre  </option>
+                                 <option value="Saint-Etienne"> Saint-Etienne  </option>
+                                 <option value="Toulon"> Toulon  </option>
+                                 <option value="Grenoble"> Grenoble </option> 
+                                 <option value="Angers">  Angers </option>
+                                 <option value="Dijon"> Dijon  </option> 
+                                 <option value="Brest"> Brest </option>
+                                 <option value="Le Mans"> Le Mans  </option> 
+                                 <option value="Aix-en-Provence">  Aix-en-Provence </option>
+                                   <option value="Clermond-Ferrand"> Clermont-Ferrand </option>
+                                   <option value="Tours"> Tours </option>
+                                  <option value="Limoges">  Limoges </option>
+                                   <option value="Villeurbanne"> Villeurbanne </option>
+                                   <option value="Amiens">  Amiens </option>
+                                   <option value="Metz">  Metz </option>
+                                    <option value="Besançon"> Besançon </option>
+                                    <option value="Perpignan"> Perpignan</option>
+                                    <option value="Orléans"> Orléans </option>
+                                     <option value="Caen"> Caen  </option>
+                                     <option value="Mulhouse"> Mulhouse </option> 
+                                      <option value="Belgique"> Belgique </option>  
+                                    </SELECT>
+                                  </div>
+
+                                    <br>
+
+
+
+
+                   
+
+              
+                      <div style="margin-top:20px;width:100%;"> 
+                        <%= f.submit  "Valider", :class => 'btn btn-default btn-lg',:style =>'width:100%;'  %>
+                      </div>
+
+                       <br>
+
+
+                       <% end %>
+
+                      <% else %>
+
+
+                              <%= form_for(@author) do |f| %>
+                                    <% if @author.errors.any? %>
+
+                                    
+                                      <div id="error_explanation">
+                                        <h4><font color="red"><%= pluralize(@author.errors.count, "error") %> Erreurs de saisies:</font></h4>
+
+                                        <ul>
+                                        <% @author.errors.full_messages.each do |msg| %>
+
+                                         
+                                          
+                                        <% end %>
+
+                                        <li>Pseudo(entre 5 et 9 caractères )</li>
+                                        <li>Password(min 5 caractères)</li>
+
+                                        </ul>
+                                      </div>
+                                    <% end %>
+                                    
+
+
+
+                                     <div class="field" style="text-align:left;">
+                                      
+                                  <h4> Recevoir les nouvelles invitations par email:</h4>
+                                      
+                                    <%= f.label :Oui,:style =>'color:black;' %> 
+                                    <%= f.radio_button :alerte, true , checked: true %> &nbsp
+                                    <%= f.label :Non ,:style =>'color:black;' %> 
+                                    <%= f.radio_button :alerte, false %> &nbsp
+                                   
+                                   </div>
+                                   <br>
+
+                                    <div style="margin-top:20px;width:100%;"> 
+                        <%= f.submit  "Valider", :class => 'btn btn-default btn-lg',:style =>'width:100%;'  %>
+                      </div>
+
+
+                                <% end %>
+           
+
+                      <% end %>
+           
+                 
+
+  
+
+                     
+
+                      
+                    
+
+              </div>
+
+
+
+              <!-- ----------------------------------------------------------------------------------------  -->
+
+
+
+
+
+
+              <!-- ----------------------------------------------------------------------------------------- -->
+
+
+              <div class="col-xs-0 col-sm-4 col-md-4 col-lg-4 text-center " ></div>
+
+
+          </div>
+
+         
+
+         
+  </div>
